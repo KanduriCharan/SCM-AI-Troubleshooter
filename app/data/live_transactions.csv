@@ -1,0 +1,105 @@
+transaction_id,module,status,severity,retry_count,error_message
+RCV-1002,Receiving,Failed,Medium,1,Receiving transaction failed due to supplier site mapping missing.
+SHP-1006,Shipping,Failed,High,0,Shipment confirmation failed because warehouse code WHX99 is invalid.
+INT-1016,Integration,Failed,Medium,2,Downstream service timeout while posting receipt data.
+RCV-1017,Receiving,Failed,High,1,Receiving transaction failed because supplier site mapping SUP-HOU is inactive for business unit BU-NE.
+RCV-1018,Receiving,Blocked,Medium,0,Receiving transaction failed because purchase order PO-9102 is already closed for receiving.
+RCV-1019,Receiving,Failed,High,1,Receiving transaction failed because ASN ASN-441 is missing for purchase order PO-7811.
+RCV-1020,Receiving,Failed,Medium,0,Receiving transaction failed because item ITEM-6631 is not enabled for organization ORG-NA.
+RCV-1021,Receiving,Failed,Medium,1,Receiving transaction failed because received quantity exceeds tolerance for purchase order ASN-441.
+RCV-1022,Receiving,Failed,Critical,1,Receiving transaction blocked because duplicate receipt was detected for ASN BU-SW.
+RCV-1023,Receiving,Failed,High,1,Receiving transaction failed because lot-controlled item LOT-A110 was received without a lot number.
+RCV-1024,Receiving,Failed,High,1,Receiving transaction failed because serial numbers are missing for item SER-1003.
+RCV-1025,Receiving,Failed,Medium,0,Receiving transaction failed because UOM conversion from case to each is missing for item ITEM-6631.
+RCV-1026,Receiving,Failed,High,0,Receiving transaction failed because dock appointment for load LOAD-966 is closed.
+RCV-1027,Receiving,Failed,High,0,Receiving transaction failed because item RMA-333 is under receiving inspection hold.
+RCV-1028,Receiving,Failed,High,0,Receiving transaction failed because destination organization mapping is missing for WH-R01.
+RCV-1029,Receiving,Failed,High,0,Receiving transaction failed because supplier compliance hold is active for supplier SUP-ATL.
+RCV-1030,Receiving,Failed,High,1,Receiving transaction blocked because over-receipt would exceed allowed quantity on purchase order PO-9102.
+RCV-1031,Receiving,Failed,High,0,Receiving transaction failed because receiving date falls in closed calendar period 2026-02.
+RCV-1032,Receiving,Failed,Critical,0,Receiving transaction failed because staging record MSG-771 is missing mandatory supplier fields.
+RCV-1033,Receiving,Failed,Medium,1,Receiving transaction failed because blind receipt is not allowed for purchase order PO-7934.
+RCV-1034,Receiving,Failed,Medium,1,Receiving transaction failed because purchase order line on PO-7811 is cancelled.
+SHP-1035,Shipping,Failed,Medium,1,Shipment confirmation failed because warehouse code WH-R01 is invalid.
+SHP-1036,Shipping,Failed,High,1,Shipment confirmation failed because carrier service is missing for shipment SHPDOC-303.
+SHP-1037,Shipping,Blocked,High,1,Shipment confirmation failed because order line on ORD-8404 is not in shippable status.
+SHP-1038,Shipping,Failed,Medium,2,Shipment confirmation failed due to downstream timeout while posting shipment API-TMS.
+SHP-1039,Shipping,Failed,Medium,1,Shipment confirmation failed because tracking number for shipment SHPDOC-202 is invalid.
+SHP-1040,Shipping,Failed,High,0,Shipment confirmation failed because wave WAVE-441 has not been released.
+SHP-1041,Shipping,Failed,High,0,Shipment confirmation failed because packing is incomplete for load LOAD-966.
+SHP-1042,Shipping,Failed,High,1,Shipment confirmation failed because ship-to address validation failed for order ORD-8303.
+SHP-1043,Shipping,Failed,High,0,Shipment confirmation failed because hazmat document is missing for shipment CARR-FDX.
+SHP-1044,Shipping,Failed,Medium,1,Shipment confirmation failed because export compliance hold is active for order PO-9102.
+SHP-1045,Shipping,Blocked,Medium,1,Shipment confirmation failed because load LOAD-966 is already closed.
+SHP-1046,Shipping,Failed,High,1,Shipment confirmation failed because route sequence is invalid for load LOAD-744.
+SHP-1047,Shipping,Failed,Medium,0,Shipment confirmation failed because carrier account is inactive for shipment SHPDOC-303.
+SHP-1048,Shipping,Failed,High,0,Shipment confirmation failed because freight terms mismatch on shipment ORD-8202.
+SHP-1049,Shipping,Failed,High,0,Shipment confirmation failed because container assignment is missing for shipment SHPDOC-303.
+SHP-1050,Shipping,Blocked,Medium,0,Shipment confirmation failed because short shipment requires approval for order ORD-8404.
+SHP-1051,Shipping,Blocked,High,0,Shipment confirmation failed because delivery appointment window has expired for load PO-9101.
+SHP-1052,Shipping,Failed,Critical,1,Shipment confirmation failed because manifest generation failed for shipment SHPDOC-303.
+INV-1053,Inventory,Blocked,Medium,0,Inventory transaction failed because insufficient stock is available for item ITEM-5520.
+INV-1054,Inventory,Failed,Medium,1,Inventory transaction failed because reservation conflict exists for item ITEM-4401.
+INV-1055,Inventory,Failed,High,0,Inventory transaction failed because lot LOT-C330 does not match allocation criteria.
+INV-1056,Inventory,Failed,Medium,1,Inventory transaction failed because serial SER-1001 is not eligible for the requested movement.
+INV-1057,Inventory,Failed,High,1,Inventory transaction failed because item ITEM-7742 is not assigned to location WH-R02.
+INV-1058,Inventory,Failed,High,1,Inventory transaction failed because lot LOT-B220 is expired.
+INV-1059,Inventory,Failed,Medium,1,Inventory transaction failed because location CNT-903 is locked for cycle count.
+INV-1060,Inventory,Blocked,Medium,0,Inventory transaction failed because movement would create negative balance for item ITEM-7742.
+INV-1061,Inventory,Failed,High,1,Inventory transaction failed because cost group is missing for item ITEM-4401.
+INV-1062,Inventory,Failed,High,0,Inventory transaction failed because locator LOC-A-01 is inactive.
+INV-1063,Inventory,Failed,High,1,Inventory transaction failed because ownership mismatch exists for lot ITEM-7742.
+INV-1064,Inventory,Blocked,High,0,Inventory transaction failed because item ITEM-7742 is in quarantine status.
+INV-1065,Inventory,Failed,Medium,0,Inventory transaction failed because UOM conversion is missing for item ITEM-7742.
+INV-1066,Inventory,Pending Retry,High,3,Inventory transaction failed because replenishment is still pending for item ITEM-6631.
+INV-1067,Inventory,Failed,High,1,Inventory transaction failed because transfer order TO-1101 is missing or invalid.
+INV-1068,Inventory,Failed,Medium,1,Inventory transaction failed because count variance approval is missing for cycle count PO-9102.
+INV-1069,Inventory,Failed,Medium,1,Inventory transaction failed because subinventory SUB-A is disabled.
+INV-1070,Inventory,Failed,High,0,Inventory transaction failed because backdated posting is not allowed for period 2026-01.
+LBL-1071,Labeling,Failed,Low,1,Label request failed because no printer assignment exists for site PRN-02.
+LBL-1072,Labeling,Failed,High,0,Label request failed because label template TPL-PALLET is missing.
+LBL-1073,Labeling,Failed,High,1,Label request failed because print service is unavailable for printer TPL-CARTON.
+LBL-1074,Labeling,Failed,Medium,0,Label request failed because user lacks print permission for printer TPL-PALLET.
+LBL-1075,Labeling,Failed,High,1,Label request failed because template version mismatch exists for template TPL-RET.
+LBL-1076,Labeling,Failed,High,0,Label request failed because required barcode field is missing for request REQ-663.
+LBL-1077,Labeling,Failed,High,1,Label request blocked because duplicate print was detected for request REQ-551.
+LBL-1078,Labeling,Failed,High,0,Label request failed because ZPL rendering error occurred for template TPL-RET.
+LBL-1079,Labeling,Failed,Low,1,Label request failed because network printer PRN-02 is offline.
+LBL-1080,Labeling,Failed,High,1,Label request failed because site-to-template mapping is missing for site TPL-PALLET.
+LBL-1081,Labeling,Failed,High,0,Label request failed because reprint reason is missing for request REQ-774.
+LBL-1082,Labeling,Failed,Medium,1,Label request failed because required font package is missing for template TPL-RET.
+LBL-1083,Labeling,Failed,Medium,1,Label request failed because label queue backlog is too high for printer PRN-01.
+LBL-1084,Labeling,Failed,High,1,Label request failed because image asset is missing for template TPL-PALLET.
+LBL-1085,Labeling,Failed,Medium,0,Label request failed because language pack is unavailable for request REQ-885.
+LBL-1086,Labeling,Failed,Critical,1,Label request failed because labeling API token expired for service API-TMS.
+INT-1087,Integration,Failed,High,2,Interface transaction failed due to downstream timeout for message API-WMS.
+INT-1088,Integration,Failed,Critical,2,Interface transaction failed because authentication failed for endpoint API-TMS.
+INT-1089,Integration,Failed,Medium,1,Interface transaction failed because payload schema validation failed for message MSG-993.
+INT-1090,Integration,Failed,High,1,Interface transaction failed because endpoint PO-7811 is unavailable.
+INT-1091,Integration,Failed,High,0,Interface transaction failed because staging record MSG-771 is orphaned.
+INT-1092,Integration,Failed,Critical,0,Interface transaction blocked because duplicate message MSG-882 was detected.
+INT-1093,Integration,Failed,Medium,3,Interface transaction failed because acknowledgment is missing for message MSG-882.
+INT-1094,Integration,Failed,High,1,Interface transaction failed because certificate expired for endpoint API-ERP.
+INT-1095,Integration,Failed,High,1,Interface transaction failed because API rate limit was exceeded for endpoint API-WMS.
+INT-1096,Integration,Failed,Medium,0,Interface transaction failed because transformation mapping is missing for code REASON-WRG.
+INT-1097,Integration,Failed,Critical,0,Interface transaction failed because message ordering conflict exists for message MSG-882.
+INT-1098,Integration,Failed,Medium,3,Interface transaction failed because interface queue backlog is too high for batch PRN-02.
+INT-1099,Integration,Pending Retry,High,2,Interface transaction failed because webhook signature validation failed for message API-LBL.
+INT-1100,Integration,Failed,Medium,1,Interface transaction failed because batch window is closed for job JOB-NIGHT-03.
+INT-1101,Integration,Failed,Medium,1,Interface transaction failed because reference code MSG-104 is unmapped.
+INT-1102,Integration,Failed,High,1,Interface transaction failed because payload decode failed for file FILE-CD2.
+PUR-1103,Purchasing,Failed,Medium,1,Purchase order transaction failed because supplier SUP-PHX is inactive.
+PUR-1104,Purchasing,Failed,Medium,1,Purchase order transaction failed because buyer assignment is missing for purchase order PO-8450.
+PUR-1105,Purchasing,Failed,Medium,0,Purchase order transaction failed because purchase order PO-8450 is still pending approval.
+PUR-1106,Purchasing,Failed,High,1,Purchase order transaction failed because tax code is missing for purchase order PO-8450.
+PUR-1107,Purchasing,Failed,High,1,Purchase order transaction failed because payment terms mismatch exists on purchase order PO-8450.
+PUR-1108,Purchasing,Failed,High,0,Purchase order transaction failed because exchange rate is missing for purchase order PO-7811.
+PUR-1109,Purchasing,Failed,Medium,1,Purchase order transaction failed because sourcing contract for purchase order PO-9102 is expired.
+PUR-1110,Purchasing,Blocked,High,0,Purchase order transaction failed because required supplier compliance document is missing for SUP-PHX.
+RTN-1111,Returns,Failed,Medium,1,Return transaction failed because return reason is missing for RMA RMA-444.
+RTN-1112,Returns,Failed,High,1,Return transaction failed because restock location ITEM-5520 is invalid.
+RTN-1113,Returns,Failed,Medium,0,Return transaction failed because inspection is required for RMA RMA-111.
+RTN-1114,Returns,Failed,Medium,1,Return transaction failed because disposition is missing for return PO-7934.
+RTN-1115,Returns,Failed,High,1,Return transaction failed because credit memo creation failed for RMA RMA-111.
+RTN-1116,Returns,Failed,High,1,Return transaction failed because serial SER-1001 is not eligible for return.
+RTN-1117,Returns,Failed,High,0,Return transaction failed because warranty has expired for RMA RMA-111.

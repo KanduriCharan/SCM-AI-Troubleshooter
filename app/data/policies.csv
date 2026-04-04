@@ -1,0 +1,105 @@
+source_id,source_type,title,content
+POL-001,policy,Approval for High-Risk Actions,"Any corrective action involving transaction reprocessing, hold release, or status change must require human approval when confidence is low or the business impact is medium or high."
+POL-002,policy,Retry Policy for Transient Failures,Timeout-related failures may be retried when evidence suggests a transient downstream condition and retry count is within safe threshold.
+POL-003,policy,Escalation Policy,Repeated failures after corrective retry or conflicting evidence should trigger escalation instead of repeated automated recommendation.
+POL-004,policy,Receiving Approval for High-Impact Reprocessing,"receiving corrective actions that reprocess live transactions, reopen status, or alter operational history require human approval when business impact is medium or higher."
+POL-005,policy,Receiving Retry Threshold for Transient Failures,Retry receiving failures only when evidence indicates a transient condition and retry count remains within the approved safe threshold.
+POL-006,policy,Receiving Escalation After Repeated Failure,"If the same receiving issue persists after the recommended corrective action or two retries, escalate instead of looping automation."
+POL-007,policy,Receiving Duplicate Event Protection,"Do not auto-reprocess duplicate-sensitive receiving events when the evidence indicates replay, duplicate submission, or idempotency conflict."
+POL-008,policy,Receiving Audit Trail for Manual Correction,"Any manual data correction applied to a receiving transaction must capture who changed it, what changed, and why the correction was required."
+POL-009,policy,Receiving Closed Period and Backdate Restriction,Do not recommend backdated or closed-period receiving posting changes unless a controller or designated approver explicitly authorizes the action.
+POL-010,policy,Receiving Tolerance Override Review,"Quantity, tolerance, or policy overrides in receiving require supervisor review before the transaction is reprocessed."
+POL-011,policy,Receiving Quality and Compliance Hold Gate,"When receiving evidence points to quality hold, quarantine, export hold, or supplier compliance hold, the system must recommend review before release."
+POL-012,policy,Receiving Conflicting Evidence Escalation,"If evidence for a receiving issue conflicts across sources, escalate the recommendation rather than choosing an automated corrective action."
+POL-013,policy,Receiving Privileged Access Requirement,"Configuration, role, or master-data changes used to resolve receiving failures must be performed only by users with approved privileged access."
+POL-014,policy,Receiving Queue Backlog Backoff,"When queue depth or service backlog affects receiving processing, apply delayed retry and avoid immediate repeated execution."
+POL-015,policy,Receiving Credential and Certificate Ownership,"Authentication, token, or certificate failures affecting receiving should route to the integration or platform owner rather than business users."
+POL-016,policy,Receiving Reprint and Repeat Action Justification,"Repeated receiving actions such as reprints, reissues, or repeated submissions require a reason code before execution."
+POL-017,policy,Receiving Financial Impact Review,"If the recommended receiving fix can change inventory valuation, financial recognition, freight billing, or credit outcome, require human review."
+POL-018,policy,Receiving Safe Recommendation Boundary,Recommendations for receiving should prefer safe diagnosis and next-step guidance over direct automation when confidence is low or irreversible impact is possible.
+POL-019,policy,Shipping Approval for High-Impact Reprocessing,"shipping corrective actions that reprocess live transactions, reopen status, or alter operational history require human approval when business impact is medium or higher."
+POL-020,policy,Shipping Retry Threshold for Transient Failures,Retry shipping failures only when evidence indicates a transient condition and retry count remains within the approved safe threshold.
+POL-021,policy,Shipping Escalation After Repeated Failure,"If the same shipping issue persists after the recommended corrective action or two retries, escalate instead of looping automation."
+POL-022,policy,Shipping Duplicate Event Protection,"Do not auto-reprocess duplicate-sensitive shipping events when the evidence indicates replay, duplicate submission, or idempotency conflict."
+POL-023,policy,Shipping Audit Trail for Manual Correction,"Any manual data correction applied to a shipping transaction must capture who changed it, what changed, and why the correction was required."
+POL-024,policy,Shipping Closed Period and Backdate Restriction,Do not recommend backdated or closed-period shipping posting changes unless a controller or designated approver explicitly authorizes the action.
+POL-025,policy,Shipping Tolerance Override Review,"Quantity, tolerance, or policy overrides in shipping require supervisor review before the transaction is reprocessed."
+POL-026,policy,Shipping Quality and Compliance Hold Gate,"When shipping evidence points to quality hold, quarantine, export hold, or supplier compliance hold, the system must recommend review before release."
+POL-027,policy,Shipping Conflicting Evidence Escalation,"If evidence for a shipping issue conflicts across sources, escalate the recommendation rather than choosing an automated corrective action."
+POL-028,policy,Shipping Privileged Access Requirement,"Configuration, role, or master-data changes used to resolve shipping failures must be performed only by users with approved privileged access."
+POL-029,policy,Shipping Queue Backlog Backoff,"When queue depth or service backlog affects shipping processing, apply delayed retry and avoid immediate repeated execution."
+POL-030,policy,Shipping Credential and Certificate Ownership,"Authentication, token, or certificate failures affecting shipping should route to the integration or platform owner rather than business users."
+POL-031,policy,Shipping Reprint and Repeat Action Justification,"Repeated shipping actions such as reprints, reissues, or repeated submissions require a reason code before execution."
+POL-032,policy,Shipping Financial Impact Review,"If the recommended shipping fix can change inventory valuation, financial recognition, freight billing, or credit outcome, require human review."
+POL-033,policy,Shipping Safe Recommendation Boundary,Recommendations for shipping should prefer safe diagnosis and next-step guidance over direct automation when confidence is low or irreversible impact is possible.
+POL-034,policy,Inventory Approval for High-Impact Reprocessing,"inventory corrective actions that reprocess live transactions, reopen status, or alter operational history require human approval when business impact is medium or higher."
+POL-035,policy,Inventory Retry Threshold for Transient Failures,Retry inventory failures only when evidence indicates a transient condition and retry count remains within the approved safe threshold.
+POL-036,policy,Inventory Escalation After Repeated Failure,"If the same inventory issue persists after the recommended corrective action or two retries, escalate instead of looping automation."
+POL-037,policy,Inventory Duplicate Event Protection,"Do not auto-reprocess duplicate-sensitive inventory events when the evidence indicates replay, duplicate submission, or idempotency conflict."
+POL-038,policy,Inventory Audit Trail for Manual Correction,"Any manual data correction applied to a inventory transaction must capture who changed it, what changed, and why the correction was required."
+POL-039,policy,Inventory Closed Period and Backdate Restriction,Do not recommend backdated or closed-period inventory posting changes unless a controller or designated approver explicitly authorizes the action.
+POL-040,policy,Inventory Tolerance Override Review,"Quantity, tolerance, or policy overrides in inventory require supervisor review before the transaction is reprocessed."
+POL-041,policy,Inventory Quality and Compliance Hold Gate,"When inventory evidence points to quality hold, quarantine, export hold, or supplier compliance hold, the system must recommend review before release."
+POL-042,policy,Inventory Conflicting Evidence Escalation,"If evidence for a inventory issue conflicts across sources, escalate the recommendation rather than choosing an automated corrective action."
+POL-043,policy,Inventory Privileged Access Requirement,"Configuration, role, or master-data changes used to resolve inventory failures must be performed only by users with approved privileged access."
+POL-044,policy,Inventory Queue Backlog Backoff,"When queue depth or service backlog affects inventory processing, apply delayed retry and avoid immediate repeated execution."
+POL-045,policy,Inventory Credential and Certificate Ownership,"Authentication, token, or certificate failures affecting inventory should route to the integration or platform owner rather than business users."
+POL-046,policy,Inventory Reprint and Repeat Action Justification,"Repeated inventory actions such as reprints, reissues, or repeated submissions require a reason code before execution."
+POL-047,policy,Inventory Financial Impact Review,"If the recommended inventory fix can change inventory valuation, financial recognition, freight billing, or credit outcome, require human review."
+POL-048,policy,Inventory Safe Recommendation Boundary,Recommendations for inventory should prefer safe diagnosis and next-step guidance over direct automation when confidence is low or irreversible impact is possible.
+POL-049,policy,Labeling Approval for High-Impact Reprocessing,"labeling corrective actions that reprocess live transactions, reopen status, or alter operational history require human approval when business impact is medium or higher."
+POL-050,policy,Labeling Retry Threshold for Transient Failures,Retry labeling failures only when evidence indicates a transient condition and retry count remains within the approved safe threshold.
+POL-051,policy,Labeling Escalation After Repeated Failure,"If the same labeling issue persists after the recommended corrective action or two retries, escalate instead of looping automation."
+POL-052,policy,Labeling Duplicate Event Protection,"Do not auto-reprocess duplicate-sensitive labeling events when the evidence indicates replay, duplicate submission, or idempotency conflict."
+POL-053,policy,Labeling Audit Trail for Manual Correction,"Any manual data correction applied to a labeling transaction must capture who changed it, what changed, and why the correction was required."
+POL-054,policy,Labeling Closed Period and Backdate Restriction,Do not recommend backdated or closed-period labeling posting changes unless a controller or designated approver explicitly authorizes the action.
+POL-055,policy,Labeling Tolerance Override Review,"Quantity, tolerance, or policy overrides in labeling require supervisor review before the transaction is reprocessed."
+POL-056,policy,Labeling Quality and Compliance Hold Gate,"When labeling evidence points to quality hold, quarantine, export hold, or supplier compliance hold, the system must recommend review before release."
+POL-057,policy,Labeling Conflicting Evidence Escalation,"If evidence for a labeling issue conflicts across sources, escalate the recommendation rather than choosing an automated corrective action."
+POL-058,policy,Labeling Privileged Access Requirement,"Configuration, role, or master-data changes used to resolve labeling failures must be performed only by users with approved privileged access."
+POL-059,policy,Labeling Queue Backlog Backoff,"When queue depth or service backlog affects labeling processing, apply delayed retry and avoid immediate repeated execution."
+POL-060,policy,Labeling Credential and Certificate Ownership,"Authentication, token, or certificate failures affecting labeling should route to the integration or platform owner rather than business users."
+POL-061,policy,Labeling Reprint and Repeat Action Justification,"Repeated labeling actions such as reprints, reissues, or repeated submissions require a reason code before execution."
+POL-062,policy,Labeling Financial Impact Review,"If the recommended labeling fix can change inventory valuation, financial recognition, freight billing, or credit outcome, require human review."
+POL-063,policy,Labeling Safe Recommendation Boundary,Recommendations for labeling should prefer safe diagnosis and next-step guidance over direct automation when confidence is low or irreversible impact is possible.
+POL-064,policy,Integration Approval for High-Impact Reprocessing,"integration corrective actions that reprocess live transactions, reopen status, or alter operational history require human approval when business impact is medium or higher."
+POL-065,policy,Integration Retry Threshold for Transient Failures,Retry integration failures only when evidence indicates a transient condition and retry count remains within the approved safe threshold.
+POL-066,policy,Integration Escalation After Repeated Failure,"If the same integration issue persists after the recommended corrective action or two retries, escalate instead of looping automation."
+POL-067,policy,Integration Duplicate Event Protection,"Do not auto-reprocess duplicate-sensitive integration events when the evidence indicates replay, duplicate submission, or idempotency conflict."
+POL-068,policy,Integration Audit Trail for Manual Correction,"Any manual data correction applied to a integration transaction must capture who changed it, what changed, and why the correction was required."
+POL-069,policy,Integration Closed Period and Backdate Restriction,Do not recommend backdated or closed-period integration posting changes unless a controller or designated approver explicitly authorizes the action.
+POL-070,policy,Integration Tolerance Override Review,"Quantity, tolerance, or policy overrides in integration require supervisor review before the transaction is reprocessed."
+POL-071,policy,Integration Quality and Compliance Hold Gate,"When integration evidence points to quality hold, quarantine, export hold, or supplier compliance hold, the system must recommend review before release."
+POL-072,policy,Integration Conflicting Evidence Escalation,"If evidence for a integration issue conflicts across sources, escalate the recommendation rather than choosing an automated corrective action."
+POL-073,policy,Integration Privileged Access Requirement,"Configuration, role, or master-data changes used to resolve integration failures must be performed only by users with approved privileged access."
+POL-074,policy,Integration Queue Backlog Backoff,"When queue depth or service backlog affects integration processing, apply delayed retry and avoid immediate repeated execution."
+POL-075,policy,Integration Credential and Certificate Ownership,"Authentication, token, or certificate failures affecting integration should route to the integration or platform owner rather than business users."
+POL-076,policy,Integration Reprint and Repeat Action Justification,"Repeated integration actions such as reprints, reissues, or repeated submissions require a reason code before execution."
+POL-077,policy,Integration Financial Impact Review,"If the recommended integration fix can change inventory valuation, financial recognition, freight billing, or credit outcome, require human review."
+POL-078,policy,Integration Safe Recommendation Boundary,Recommendations for integration should prefer safe diagnosis and next-step guidance over direct automation when confidence is low or irreversible impact is possible.
+POL-079,policy,Purchasing Approval for High-Impact Reprocessing,"purchasing corrective actions that reprocess live transactions, reopen status, or alter operational history require human approval when business impact is medium or higher."
+POL-080,policy,Purchasing Retry Threshold for Transient Failures,Retry purchasing failures only when evidence indicates a transient condition and retry count remains within the approved safe threshold.
+POL-081,policy,Purchasing Escalation After Repeated Failure,"If the same purchasing issue persists after the recommended corrective action or two retries, escalate instead of looping automation."
+POL-082,policy,Purchasing Duplicate Event Protection,"Do not auto-reprocess duplicate-sensitive purchasing events when the evidence indicates replay, duplicate submission, or idempotency conflict."
+POL-083,policy,Purchasing Audit Trail for Manual Correction,"Any manual data correction applied to a purchasing transaction must capture who changed it, what changed, and why the correction was required."
+POL-084,policy,Purchasing Closed Period and Backdate Restriction,Do not recommend backdated or closed-period purchasing posting changes unless a controller or designated approver explicitly authorizes the action.
+POL-085,policy,Purchasing Tolerance Override Review,"Quantity, tolerance, or policy overrides in purchasing require supervisor review before the transaction is reprocessed."
+POL-086,policy,Purchasing Quality and Compliance Hold Gate,"When purchasing evidence points to quality hold, quarantine, export hold, or supplier compliance hold, the system must recommend review before release."
+POL-087,policy,Purchasing Conflicting Evidence Escalation,"If evidence for a purchasing issue conflicts across sources, escalate the recommendation rather than choosing an automated corrective action."
+POL-088,policy,Purchasing Privileged Access Requirement,"Configuration, role, or master-data changes used to resolve purchasing failures must be performed only by users with approved privileged access."
+POL-089,policy,Purchasing Queue Backlog Backoff,"When queue depth or service backlog affects purchasing processing, apply delayed retry and avoid immediate repeated execution."
+POL-090,policy,Purchasing Credential and Certificate Ownership,"Authentication, token, or certificate failures affecting purchasing should route to the integration or platform owner rather than business users."
+POL-091,policy,Purchasing Reprint and Repeat Action Justification,"Repeated purchasing actions such as reprints, reissues, or repeated submissions require a reason code before execution."
+POL-092,policy,Purchasing Financial Impact Review,"If the recommended purchasing fix can change inventory valuation, financial recognition, freight billing, or credit outcome, require human review."
+POL-093,policy,Purchasing Safe Recommendation Boundary,Recommendations for purchasing should prefer safe diagnosis and next-step guidance over direct automation when confidence is low or irreversible impact is possible.
+POL-094,policy,Returns Approval for High-Impact Reprocessing,"returns corrective actions that reprocess live transactions, reopen status, or alter operational history require human approval when business impact is medium or higher."
+POL-095,policy,Returns Retry Threshold for Transient Failures,Retry returns failures only when evidence indicates a transient condition and retry count remains within the approved safe threshold.
+POL-096,policy,Returns Escalation After Repeated Failure,"If the same returns issue persists after the recommended corrective action or two retries, escalate instead of looping automation."
+POL-097,policy,Returns Duplicate Event Protection,"Do not auto-reprocess duplicate-sensitive returns events when the evidence indicates replay, duplicate submission, or idempotency conflict."
+POL-098,policy,Returns Audit Trail for Manual Correction,"Any manual data correction applied to a returns transaction must capture who changed it, what changed, and why the correction was required."
+POL-099,policy,Returns Closed Period and Backdate Restriction,Do not recommend backdated or closed-period returns posting changes unless a controller or designated approver explicitly authorizes the action.
+POL-100,policy,Returns Tolerance Override Review,"Quantity, tolerance, or policy overrides in returns require supervisor review before the transaction is reprocessed."
+POL-101,policy,Returns Quality and Compliance Hold Gate,"When returns evidence points to quality hold, quarantine, export hold, or supplier compliance hold, the system must recommend review before release."
+POL-102,policy,Returns Conflicting Evidence Escalation,"If evidence for a returns issue conflicts across sources, escalate the recommendation rather than choosing an automated corrective action."
+POL-103,policy,Returns Privileged Access Requirement,"Configuration, role, or master-data changes used to resolve returns failures must be performed only by users with approved privileged access."
+POL-104,policy,Returns Queue Backlog Backoff,"When queue depth or service backlog affects returns processing, apply delayed retry and avoid immediate repeated execution."
