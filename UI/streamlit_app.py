@@ -2,7 +2,7 @@ import requests
 import streamlit as st
 import os
 
-BACKEND_BASE_URL = os.getenv("BACKEND_BASE_URL", "http://127.0.0.1:8000")
+BACKEND_BASE_URL = os.getenv("BACKEND_BASE_URL", "https://scm-ai-troubleshooter.onrender.com")
 ANALYZE_API_URL = f"{BACKEND_BASE_URL}/analyze"
 UPLOAD_API_URL = f"{BACKEND_BASE_URL}/documents/upload"
 

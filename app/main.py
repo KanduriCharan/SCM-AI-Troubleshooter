@@ -12,7 +12,7 @@ app = FastAPI(
 origins = [
     "http://localhost:8501",
     "http://127.0.0.1:8501",
-    # add your Streamlit Cloud URL here later
+    "https://scm-ai-troubleshooter-2h3zwebrxpguyddekhddgm.streamlit.app/"
 ]
 
 app.add_middleware(
