@@ -2,9 +2,11 @@ import requests
 import streamlit as st
 import os
 
-BACKEND_BASE_URL = os.getenv("BACKEND_BASE_URL", "https://scm-ai-troubleshooter.onrender.com")
+BACKEND_BASE_URL = os.getenv("BACKEND_BASE_URL", "http://127.0.0.1:8000")
 ANALYZE_API_URL = f"{BACKEND_BASE_URL}/analyze"
 UPLOAD_API_URL = f"{BACKEND_BASE_URL}/documents/upload"
+RISK_SHIPMENTS_API_URL = f"{BACKEND_BASE_URL}/risk/shipments"
+RISK_PREDICT_API_URL = f"{BACKEND_BASE_URL}/risk/predict"
 
 st.set_page_config(
     page_title="SCM AI Troubleshooter",
@@ -17,6 +19,12 @@ if "latest_result" not in st.session_state:
 
 if "last_upload_result" not in st.session_state:
     st.session_state.last_upload_result = None
+
+if "current_shipments" not in st.session_state:
+    st.session_state.current_shipments = []
+
+if "latest_risk_prediction" not in st.session_state:
+    st.session_state.latest_risk_prediction = None
 
 
 def source_type_label(source_type: str) -> str:
@@ -75,7 +83,58 @@ def upload_pdf_to_backend(uploaded_file) -> dict | None:
     except Exception as exc:
         st.error(f"Unexpected upload error: {exc}")
         return None
+def fetch_current_shipments() -> list[dict]:
+    try:
+        response = requests.get(RISK_SHIPMENTS_API_URL, timeout=180)
 
+        if response.status_code != 200:
+            st.error(f"Shipment request failed with status {response.status_code}")
+            try:
+                st.json(response.json())
+            except Exception:
+                st.text(response.text)
+            return []
+
+        return response.json().get("shipments", [])
+
+    except requests.exceptions.ConnectionError:
+        st.error("Could not connect to backend. Make sure FastAPI is running.")
+        return []
+    except requests.exceptions.Timeout:
+        st.error("Shipment request timed out. Try again.")
+        return []
+    except Exception as exc:
+        st.error(f"Unexpected shipment fetch error: {exc}")
+        return []
+
+
+def predict_risk_for_shipment(shipment_id: str) -> dict | None:
+    try:
+        response = requests.post(
+            RISK_PREDICT_API_URL,
+            json={"shipment_id": shipment_id},
+            timeout=180,
+        )
+
+        if response.status_code != 200:
+            st.error(f"Risk prediction failed with status {response.status_code}")
+            try:
+                st.json(response.json())
+            except Exception:
+                st.text(response.text)
+            return None
+
+        return response.json()
+
+    except requests.exceptions.ConnectionError:
+        st.error("Could not connect to backend. Make sure FastAPI is running.")
+        return None
+    except requests.exceptions.Timeout:
+        st.error("Risk prediction timed out. Try again.")
+        return None
+    except Exception as exc:
+        st.error(f"Unexpected risk prediction error: {exc}")
+        return None
 
 def analyze_issue(payload: dict) -> dict | None:
     try:
@@ -105,10 +164,73 @@ def analyze_issue(payload: dict) -> dict | None:
 st.title("SCM AI Troubleshooter")
 st.caption("Hybrid enterprise AI assistant using structured operational data + RAG over uploaded manuals.")
 
-tab_analyze, tab_upload, tab_about = st.tabs(["Analyze Issue", "Upload Manuals", "How It Works"])
+tab_analyze,  tab_risk, tab_about = st.tabs(
+    ["Issue Analyzer", "Risk Analyzer", "How It Works"]
+)
+
+with tab_risk:
+    st.subheader("Shipment Risk Analyzer")
+    st.write("Select a current shipment and predict its operational risk using the trained ML model.")
+
+    if st.button("Load Current Shipments", use_container_width=True):
+        with st.spinner("Loading current shipment feed..."):
+            st.session_state.current_shipments = fetch_current_shipments()
+
+    shipments = st.session_state.current_shipments
+
+    if not shipments:
+        st.info("Click 'Load Current Shipments' to fetch the simulated enterprise shipment feed.")
+    else:
+        shipment_options = [
+            f"{item['shipment_id']} | {item.get('origin_city', '')} → {item.get('destination_city', '')} | {item.get('carrier', '')}"
+            for item in shipments
+        ]
+
+        selected_option = st.selectbox("Select Shipment", shipment_options)
+
+        selected_shipment_id = selected_option.split(" | ")[0]
+
+        if st.button("Predict Shipment Risk", type="primary", use_container_width=True):
+            with st.spinner("Running risk prediction model..."):
+                prediction = predict_risk_for_shipment(selected_shipment_id)
+
+            if prediction:
+                st.session_state.latest_risk_prediction = prediction
+
+        prediction = st.session_state.latest_risk_prediction
+
+        if prediction:
+            st.markdown("### Prediction Result")
+
+            predicted_risk = prediction.get("predicted_risk", "Unknown")
+            probabilities = prediction.get("risk_probabilities", {})
+            snapshot = prediction.get("shipment_snapshot", {})
+
+            kpi1, kpi2, kpi3 = st.columns(3)
+
+            with kpi1:
+                st.metric("Predicted Risk", predicted_risk)
+
+            with kpi2:
+                high_prob = probabilities.get("High Risk", 0.0)
+                st.metric("High Risk Probability", f"{high_prob:.2f}")
+
+            with kpi3:
+                st.metric("Shipment Status", snapshot.get("shipment_status", "N/A"))
+
+            st.markdown("### Risk Probabilities")
+            st.json(probabilities)
+            st.markdown("### Explanation")
+            st.write(prediction.get("llm_risk_explanation", "No explanation returned."))
+            st.markdown("### Current Shipment Snapshot")
+            st.json(snapshot)
 
 
-with tab_upload:
+
+
+with tab_analyze:
+    left_col, right_col = st.columns([1, 2])
+    st.markdown("---")
     st.subheader("Upload PDF Manuals for RAG")
     st.write("Upload warehouse, logistics, or SCM manuals so the assistant can retrieve troubleshooting guidance from them.")
 
@@ -133,10 +255,6 @@ with tab_upload:
         st.markdown("### Last Indexed Document")
         st.json(st.session_state.last_upload_result)
 
-
-with tab_analyze:
-    left_col, right_col = st.columns([1, 2])
-
     with left_col:
         st.subheader("Issue Input")
 
@@ -157,7 +275,7 @@ with tab_analyze:
             placeholder="Retry history, business context, recent manual actions, etc.",
         )
 
-        if st.button("Analyze Issue", type="primary", use_container_width=True):
+        if st.button("Issue Analyzer", type="primary", use_container_width=True):
             if not raw_error_message.strip():
                 st.warning("Please enter a raw error message.")
             else:
@@ -173,13 +291,7 @@ with tab_analyze:
                 if result:
                     st.session_state.latest_result = result
 
-        st.markdown("---")
-        st.markdown("### What the system does")
-        st.write("1. Looks up structured operational context")
-        st.write("2. Retrieves matching incidents, docs, and policies")
-        st.write("3. Retrieves manual chunks from uploaded PDFs")
-        st.write("4. Sends grounded evidence to the LLM")
-        st.write("5. Applies guardrails before showing recommendations")
+
 
     with right_col:
         result = st.session_state.latest_result
@@ -272,7 +384,7 @@ with tab_analyze:
 
 
 with tab_about:
-    st.subheader("System Architecture")
+    st.subheader("System Architecture - Issue Analyzer")
     st.write(
         """
         This application combines:
@@ -286,4 +398,21 @@ with tab_about:
     st.markdown("### End-to-End Flow")
     st.write(
         """User Issue -> CSV Retrieval + RAG Retrieval -> LLM Reasoning -> Guardrails -> UI Response"""
+    )
+    st.markdown("---")
+    st.subheader("System Architecture - Risk Analyzer")
+    st.write(
+        """
+        This application combines:
+        - Synthetic live shipment feed (simulating ERP systems like Oracle WMS/OTM)
+        - Machine Learning model to predict shipment risk (Low / Moderate / High)
+        - Feature-driven inference using operational signals (traffic, weather, supplier reliability, etc.)
+        - LLM-based reasoning to explain risk in business terms
+        - Action generation layer to recommend real-time operational decisions
+        """
+    )
+
+    st.markdown("### End-to-End Flow")
+    st.write(
+        """Generated Shipment Data → Feature Extraction → ML Risk Prediction → LLM Explanation → Action Recommendations → UI Dashboard"""
     )
