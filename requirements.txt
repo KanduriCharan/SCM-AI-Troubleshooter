@@ -80,6 +80,8 @@ ormsgpack==1.12.2
 overrides==7.7.0
 packaging==26.0
 pandas==3.0.2
+joblib
+scikit-learn
 pillow==12.2.0
 propcache==0.4.1
 protobuf==6.33.6
