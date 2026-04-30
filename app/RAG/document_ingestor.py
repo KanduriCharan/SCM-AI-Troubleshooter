@@ -2,6 +2,25 @@ from pathlib import Path
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from app.RAG.vector_store import get_vector_store
+from docling.document_converter import DocumentConverter
+from langchain_core.documents import Document
+
+def extract_pdf_with_docling(file_path: Path) -> list[Document]:
+    converter = DocumentConverter()
+    result = converter.convert(str(file_path))
+
+    markdown_text = result.document.export_to_markdown()
+
+    return [
+        Document(
+            page_content=markdown_text,
+            metadata={
+                "source_file": file_path.name,
+                "source_type": "uploaded manual",
+                "parser": "docling",
+            },
+        )
+    ]
 
 def ingest_pdf(pdf_path: str) -> dict:
     file_path = Path(pdf_path)
@@ -9,8 +28,7 @@ def ingest_pdf(pdf_path: str) -> dict:
     if not file_path.exists():
         raise FileNotFoundError(f"PDF NOT FOUND: {pdf_path}")
     
-    loader = PyPDFLoader(str(file_path))
-    documents = loader.load()
+    documents = extract_pdf_with_docling(file_path)
 
     splitter = RecursiveCharacterTextSplitter(
         chunk_size = 1000,
@@ -23,6 +41,7 @@ def ingest_pdf(pdf_path: str) -> dict:
         doc.metadata["source_file"] = file_path.name
         doc.metadata["chunk_index"] = idx
         doc.metadata["source_type"] = "uploaded manual"
+        doc.metadata["parser"] = "docling"
     
     vector_store = get_vector_store()
     ids= [
@@ -37,3 +56,4 @@ def ingest_pdf(pdf_path: str) -> dict:
         "chunks_created": len(split_docs),
         "status": "indexed",
     }
+

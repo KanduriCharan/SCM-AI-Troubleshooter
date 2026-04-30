@@ -1,9 +1,12 @@
+from dotenv import load_dotenv
+load_dotenv()
 from fastapi import FastAPI
 from app.api.routes import router as analyze_router
 from app.core.config import settings
 from app.api.upload_routes import router as upload_router
 from app.api.risk_routes import router as risk_router
 from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI(
     title=settings.app_name,
