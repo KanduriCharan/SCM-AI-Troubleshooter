@@ -2,10 +2,10 @@ from pathlib import Path
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from app.RAG.vector_store import get_vector_store
-from docling.document_converter import DocumentConverter
 from langchain_core.documents import Document
 
 def extract_pdf_with_docling(file_path: Path) -> list[Document]:
+    from docling.document_converter import DocumentConverter
     converter = DocumentConverter()
     result = converter.convert(str(file_path))
 
